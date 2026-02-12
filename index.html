@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Irsha 💕🦕</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ff6b8a, #ff8e9e, #ffb3c1, #ffc8d6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Quicksand', sans-serif;
+            overflow-x: hidden;
+            overflow-y: auto;
+            position: relative;
+            padding: 20px 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Floating hearts background */
+        .hearts-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 20px;
+            animation: floatUp linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Main card */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 40px 50px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(255, 107, 138, 0.3);
+            z-index: 10;
+            position: relative;
+            max-width: 550px;
+            width: 90%;
+            animation: cardAppear 0.8s ease-out;
+        }
+
+        @keyframes cardAppear {
+            from {
+                transform: scale(0.5) translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Dinosaur */
+        .dino-container {
+            font-size: 80px;
+            margin-bottom: 10px;
+            animation: dinoBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes dinoBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .dino-heart {
+            display: inline-block;
+            font-size: 30px;
+            animation: heartPulse 1s ease-in-out infinite;
+            position: relative;
+            top: -20px;
+        }
+
+        @keyframes heartPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        .title {
+            font-family: 'Pacifico', cursive;
+            color: #ff4d6d;
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: #c9184a;
+            font-size: 1em;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .question {
+            font-family: 'Pacifico', cursive;
+            color: #ff4d6d;
+            font-size: 1.6em;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        .question-sub {
+            color: #e8677d;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        /* Buttons */
+        .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            flex-direction: column;
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #ff4d6d, #c9184a);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(201, 24, 74, 0.4);
+            max-width: 90vw;
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(201, 24, 74, 0.5);
+        }
+
+        .btn-no {
+            background: linear-gradient(135deg, #adb5bd, #6c757d);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .btn-no:hover {
+            background: linear-gradient(135deg, #6c757d, #495057);
+        }
+
+        /* Celebration overlay */
+        .celebration {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff6b8a, #c9184a);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .celebration.active {
+            display: flex;
+            animation: celebrationIn 0.6s ease-out;
+        }
+
+        @keyframes celebrationIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .celebration-text {
+            font-family: 'Pacifico', cursive;
+            color: white;
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 20px;
+            animation: textGlow 2s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(255,255,255,0.5);
+            padding: 0 20px;
+        }
+
+        @keyframes textGlow {
+            0%, 100% { text-shadow: 0 0 30px rgba(255,255,255,0.3); }
+            50% { text-shadow: 0 0 50px rgba(255,255,255,0.7); }
+        }
+
+        .celebration-dinos {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: dinoSpin 3s ease-in-out infinite;
+        }
+
+        @keyframes dinoSpin {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1) rotate(-5deg); }
+            75% { transform: scale(1.1) rotate(5deg); }
+        }
+
+        .celebration-date {
+            font-family: 'Pacifico', cursive;
+            color: #ffd6e0;
+            font-size: 2em;
+            animation: datePulse 1.5s ease-in-out infinite;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        @keyframes datePulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.08); opacity: 1; }
+        }
+
+        .celebration-sub {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.2em;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        /* Confetti */
+        .confetti-piece {
+            position: fixed;
+            z-index: 101;
+            animation: confettiFall linear forwards;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Firework bursts */
+        .firework {
+            position: fixed;
+            z-index: 101;
+            pointer-events: none;
+        }
+
+        .firework-particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            animation: fireworkBurst 1s ease-out forwards;
+        }
+
+        @keyframes fireworkBurst {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        /* Responsive - tablets and large phones */
+        @media (max-width: 768px) {
+            .card {
+                padding: 35px 30px;
+                width: 92%;
+            }
+            .celebration-text {
+                font-size: 2.4em;
+            }
+            .celebration-date {
+                font-size: 1.6em;
+            }
+        }
+
+        /* Responsive - phones */
+        @media (max-width: 480px) {
+            .card {
+                padding: 25px 20px;
+                border-radius: 22px;
+            }
+            .title {
+                font-size: 1.4em;
+            }
+            .question {
+                font-size: 1.2em;
+                margin-bottom: 20px;
+            }
+            .question-sub {
+                font-size: 0.8em;
+            }
+            .dino-container {
+                font-size: 55px;
+            }
+            .dino-heart {
+                font-size: 24px;
+            }
+            .btn-yes {
+                padding: 12px 30px;
+                font-size: 1.1em;
+            }
+            .btn-no {
+                padding: 12px 30px;
+                font-size: 1.1em;
+            }
+            .celebration-text {
+                font-size: 1.8em;
+            }
+            .celebration-date {
+                font-size: 1.3em;
+            }
+            .celebration-dinos {
+                font-size: 55px;
+            }
+            .celebration-sub {
+                font-size: 1em;
+            }
+        }
+
+        /* Very small phones */
+        @media (max-width: 360px) {
+            .card {
+                padding: 20px 15px;
+            }
+            .title {
+                font-size: 1.2em;
+            }
+            .question {
+                font-size: 1.1em;
+            }
+            .dino-container {
+                font-size: 45px;
+            }
+            .celebration-text {
+                font-size: 1.5em;
+            }
+            .celebration-date {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating hearts background -->
+    <div class="hearts-bg" id="heartsBg"></div>
+
+    <!-- Main Card -->
+    <div class="card" id="mainCard">
+        <div class="dino-container">
+            🦕<span class="dino-heart">❤️</span>🦖
+        </div>
+        <div class="title">Ello my Shayla :)</div>
+        <div class="subtitle">A certain dinosaur has a question for you 🦕</div>
+        <div class="question" id="questionText">
+            Will you be Owen's Valentine? 💕
+        </div>
+        <div class="question-sub" id="questionSub">
+            (The dinos really want you to say yes)
+        </div>
+        <div class="buttons">
+            <button class="btn-yes" id="btnYes" onclick="sayYes()">Yes! 🦕💕</button>
+            <button class="btn-no" id="btnNo" onclick="sayNo()">No</button>
+        </div>
+    </div>
+
+    <!-- Celebration Screen -->
+    <div class="celebration" id="celebration">
+        <div class="celebration-dinos">🦕❤️🦖</div>
+        <div class="celebration-text" id="celebrationText">YAAAAY! 🎉💕</div>
+        <div class="celebration-date">I'll see you on the 14th of February! 💕</div>
+        <div class="celebration-sub">🦕 The dinos are so happy! 🦖</div>
+    </div>
+
+    <script>
+        // ============ FLOATING HEARTS ============
+        function createFloatingHearts() {
+            const container = document.getElementById('heartsBg');
+            const hearts = ['❤️', '💕', '💗', '💖', '🦕', '🦖', '💘'];
+            const heartCount = window.innerWidth < 600 ? 15 : 25;
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('floating-heart');
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (6 + Math.random() * 8) + 's';
+                heart.style.animationDelay = (Math.random() * 10) + 's';
+                heart.style.fontSize = (15 + Math.random() * 25) + 'px';
+                container.appendChild(heart);
+            }
+        }
+        createFloatingHearts();
+
+        // ============ NO BUTTON LOGIC ============
+        let noCount = 0;
+
+        const noMessages = [
+            "Are you sure? 🥺",
+            "Really sure? 🥺🥺",
+            "Are you REALLY sure? 😢",
+            "Pretty please? 🦕💔",
+            "The dino is crying... 😭",
+            "You're breaking my heart! 💔🦕",
+            "I'll be the best valentine! 🥺",
+            "The T-Rex is very sad now... 🦖😢",
+            "Please reconsider! 💕",
+            "Think of the dinos! 🦕🦖😭",
+            "PLEASE! The dinos need you! 😭💔",
+            "Ok I'm just gonna cry now... 🥺💧",
+        ];
+
+        const subMessages = [
+            "(the dinos are getting nervous...)",
+            "(even the T-Rex is pouting...)",
+            "(the brontosaurus is tearing up...)",
+            "(all the dinos are gathering around...)",
+            "(the dinos wrote you a love letter...)",
+            "(the dinos made you a card...)",
+            "(the meteor can't even stop this love...)",
+            "(the dinos are on their knees...)",
+            "(they've been practicing saying 'I love you'...)",
+            "(the whole Jurassic era is rooting for us...)",
+            "(even the pterodactyl flew in to ask...)",
+            "(just say yes already... please 🥺)",
+        ];
+
+        function sayNo() {
+            const btnYes = document.getElementById('btnYes');
+            const btnNo = document.getElementById('btnNo');
+            const questionText = document.getElementById('questionText');
+            const questionSub = document.getElementById('questionSub');
+
+            noCount++;
+
+            // Update question text
+            const msgIndex = Math.min(noCount - 1, noMessages.length - 1);
+            questionText.textContent = noMessages[msgIndex];
+            questionSub.textContent = subMessages[msgIndex];
+
+            // Grow the Yes button (capped to stay within mobile screens)
+            const yesPadV = Math.min(15 + (noCount * 4), 35);
+            const yesPadH = Math.min(40 + (noCount * 8), 70);
+            const yesFontSize = Math.min(1.2 + (noCount * 0.2), 2.6);
+            btnYes.style.padding = `${yesPadV}px ${yesPadH}px`;
+            btnYes.style.fontSize = `${yesFontSize}em`;
+
+            // Shrink the No button
+            const noScale = Math.max(1 - (noCount * 0.12), 0.2);
+            const noFontSize = Math.max(1.2 - (noCount * 0.1), 0.4);
+            const noPadV = Math.max(15 - (noCount * 2), 4);
+            const noPadH = Math.max(40 - (noCount * 5), 10);
+            btnNo.style.padding = `${noPadV}px ${noPadH}px`;
+            btnNo.style.fontSize = `${noFontSize}em`;
+            btnNo.style.transform = `scale(${noScale})`;
+            btnNo.style.opacity = Math.max(1 - (noCount * 0.08), 0.3);
+
+            // Shake the card
+            const card = document.getElementById('mainCard');
+            card.style.animation = 'none';
+            card.offsetHeight; // trigger reflow
+            card.style.animation = 'cardShake 0.5s ease';
+
+            // After enough presses, just make No disappear
+            if (noCount >= 10) {
+                btnNo.style.visibility = 'hidden';
+            }
+        }
+
+        // Card shake keyframes (added dynamically)
+        const shakeStyle = document.createElement('style');
+        shakeStyle.textContent = `
+            @keyframes cardShake {
+                0%, 100% { transform: translateX(0); }
+                20% { transform: translateX(-10px) rotate(-1deg); }
+                40% { transform: translateX(10px) rotate(1deg); }
+                60% { transform: translateX(-5px) rotate(-0.5deg); }
+                80% { transform: translateX(5px) rotate(0.5deg); }
+            }
+        `;
+        document.head.appendChild(shakeStyle);
+
+        // ============ YES - CELEBRATION ============
+        function sayYes() {
+            const celebration = document.getElementById('celebration');
+            const card = document.getElementById('mainCard');
+
+            card.style.display = 'none';
+            celebration.classList.add('active');
+
+            // Launch confetti
+            launchConfetti();
+
+            // Keep launching fireworks
+            setInterval(launchFirework, 800);
+            setInterval(launchConfetti, 3000);
+        }
+
+        function launchConfetti() {
+            const colors = ['#ff4d6d', '#ff6b8a', '#ffd6e0', '#fff', '#c9184a', '#ffc107', '#ff85a1', '#a3d977'];
+            const emojis = ['❤️', '💕', '🦕', '🦖', '💗', '✨', '🎉', '💖'];
+
+            const isMobile = window.innerWidth < 600;
+            const count = isMobile ? 30 : 60;
+            for (let i = 0; i < count; i++) {
+                const piece = document.createElement('div');
+                piece.classList.add('confetti-piece');
+
+                // Mix of colored squares and emojis
+                if (Math.random() > 0.4) {
+                    piece.style.width = (8 + Math.random() * 10) + 'px';
+                    piece.style.height = (8 + Math.random() * 10) + 'px';
+                    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                } else {
+                    piece.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    piece.style.fontSize = (15 + Math.random() * 20) + 'px';
+                }
+
+                piece.style.left = Math.random() * 100 + '%';
+                piece.style.animationDuration = (2 + Math.random() * 3) + 's';
+                piece.style.animationDelay = (Math.random() * 1.5) + 's';
+
+                document.body.appendChild(piece);
+
+                // Clean up
+                setTimeout(() => piece.remove(), 6000);
+            }
+        }
+
+        function launchFirework() {
+            const firework = document.createElement('div');
+            firework.classList.add('firework');
+            const x = 10 + Math.random() * 80;
+            const y = 10 + Math.random() * 60;
+            firework.style.left = x + '%';
+            firework.style.top = y + '%';
+
+            const colors = ['#ff4d6d', '#ffd6e0', '#ffc107', '#a3d977', '#fff', '#ff85a1'];
+            const particleCount = 12;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('firework-particle');
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+                const angle = (360 / particleCount) * i;
+                const distance = 40 + Math.random() * 60;
+                const tx = Math.cos(angle * Math.PI / 180) * distance;
+                const ty = Math.sin(angle * Math.PI / 180) * distance;
+
+                particle.style.animation = `fireworkBurst 1s ease-out forwards`;
+                particle.style.setProperty('--tx', tx + 'px');
+                particle.style.setProperty('--ty', ty + 'px');
+
+                // Override animation with inline transform
+                particle.animate([
+                    { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+                    { transform: `translate(${tx}px, ${ty}px) scale(0)`, opacity: 0 }
+                ], {
+                    duration: 800 + Math.random() * 400,
+                    easing: 'ease-out',
+                    fill: 'forwards'
+                });
+
+                firework.appendChild(particle);
+            }
+
+            document.body.appendChild(firework);
+            setTimeout(() => firework.remove(), 1500);
+        }
+    </script>
+</body>
+</html>
